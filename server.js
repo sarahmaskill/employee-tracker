@@ -25,7 +25,7 @@ function startApp() {
     inquirer.prompt({
         name: "action",
         type: "list",
-        message:"Select an action below",
+        message: "Select an action below",
         choices: [
             "View All Roles",
             "View All Employees",
@@ -36,38 +36,69 @@ function startApp() {
             "Update an Employee Role"
         ]
     })
-    .then((response) => {
-        switch (response.action){
-            case "View All Roles":
-                viewAllRoles();
-                break;
-            case "View All Employees":
-                viewAllEmployees();
-                break;
-            case "View All Departments":
-                viewAllDepartments();
-                break;
-            case "Add a Role":
-                addRole();
-                break;
-            case "Add an Employee":
-                addEmployee();
-                break;
-            case "Add a Deparment":
-                addDepartment();
-                break;
-            case "Update an Employee Role":
-                updateEmployeeRole();
-                break;
+        .then((response) => {
+            switch (response.action) {
+                case "View All Roles":
+                    viewAllRoles();
+                    break;
+                case "View All Employees":
+                    viewAllEmployees();
+                    break;
+                case "View All Departments":
+                    viewAllDepartments();
+                    break;
+                case "Add a Role":
+                    addRole();
+                    break;
+                case "Add an Employee":
+                    addEmployee();
+                    break;
+                case "Add a Deparment":
+                    addDepartment();
+                    break;
+                case "Update an Employee Role":
+                    updateEmployeeRole();
+                    break;
 
-        }
-    })
+            }
+        })
 }
 
-function viewAllRoles()
-function viewAllEmployees()
-function viewAllDepartments()
-function addRole()
-function addEmployee()
-function addDepartment()
-function updateEmployeeRole()
+function viewAllRoles() {
+    var query = 'SELECT * FROM role';
+    connection.query(query, function (err, res) {
+        if (err) throw err;
+        console.table('All Roles:', res);
+        startApp();
+    })
+};
+
+function viewAllEmployees() {
+    var query = 'SELECT * FROM employee';
+    connection.query(query, function (err, res) {
+        if (err) throw err;
+        console.table('All Employees:', res);
+        startApp();
+    })
+};
+
+function viewAllDepartments() {
+    var query = 'SELECT * FROM department';
+    connection.query(query, function (err, res) {
+        if (err) throw err;
+        console.table('All departments:', res);
+        startApp();
+    })
+};
+function addRole() {
+    startApp();
+};
+function addEmployee() {
+    startApp();
+};
+function addDepartment() {
+    startApp();
+};
+function updateEmployeeRole() {
+    startApp();
+};
