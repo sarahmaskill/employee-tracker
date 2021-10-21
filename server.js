@@ -65,7 +65,7 @@ function startApp() {
 }
 
 function viewAllRoles() {
-    var query = 'SELECT * FROM role';
+    let query = 'SELECT * FROM role';
     connection.query(query, function (err, res) {
         if (err) throw err;
         console.table('All Roles:', res);
@@ -74,7 +74,7 @@ function viewAllRoles() {
 };
 
 function viewAllEmployees() {
-    var query = 'SELECT * FROM employee';
+    let query = 'SELECT * FROM employee';
     connection.query(query, function (err, res) {
         if (err) throw err;
         console.table('All Employees:', res);
@@ -83,7 +83,7 @@ function viewAllEmployees() {
 };
 
 function viewAllDepartments() {
-    var query = 'SELECT * FROM department';
+    let query = 'SELECT * FROM department';
     connection.query(query, function (err, res) {
         if (err) throw err;
         console.table('All departments:', res);
@@ -91,13 +91,56 @@ function viewAllDepartments() {
     })
 };
 function addRole() {
-    startApp();
+    connection.query("SELECT role.title AS Title, role.salary AS Salary FROM role",   function(err, res) {
+        inquirer.prompt([
+            {
+              name: "Title",
+              type: "input",
+              message: "What is the title of the new role?"
+            },
+            {
+              name: "Salary",
+              type: "input",
+              message: "What is the salary of the new role?"
+    
+            } 
+        ]).then((res) =>  {
+            connection.query(
+                "INSERT INTO role SET ?",
+                {
+                  title: res.Title,
+                  salary: res.Salary,
+                },
+                function(err) {
+                    if (err) throw err
+                    console.table(res);
+                    startApp();})
+    
+        });
+      });
 };
 function addEmployee() {
     startApp();
 };
 function addDepartment() {
-    startApp();
+    inquirer.prompt([
+        {
+            name: "name",
+            type: "input",
+            message: "What Department would you like to add?"
+        }
+    ]).then((res) => {
+        connection.query(
+            "INSERT INTO department SET ? ",
+            {name: res.name},
+            
+            function (err) {
+                if (err) throw err
+                console.table(res);
+                
+                startApp();
+            })
+    })
 };
 function updateEmployeeRole() {
     startApp();
