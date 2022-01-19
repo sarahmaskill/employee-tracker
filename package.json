@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sarahmaskill/employee-tracker#readme",
   "dependencies": {
+    "console.table": "^0.10.0",
     "ctable": "^0.0.3",
     "inquirer": "^8.2.0",
     "mysql": "^2.18.1",
