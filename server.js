@@ -117,19 +117,19 @@ function addRole() {
                 },
             }
         ]).then(function (answer) {
-            let department_id;
+            let departmentId;
             for (let a = 0; a < res.length; a++) {
                 if (res[a].name == answer.Department) {
-                    department_id = res[a].id;
+                    departmentId = res[a].id;
                 }
             }
     
             db.query(
                 'INSERT INTO role SET ?',
                 {
-                    title: answer.new_role,
+                    title: answer.newRole,
                     salary: answer.salary,
-                    department_id: department_id
+                    departmentId: departmentId
                 },
                 function (err, res) {
                     if(err)throw err;
@@ -174,20 +174,20 @@ function addEmployee() {
                     message: "What is this employee's role? "
                 }
                 ]).then(function (answer) {
-                    let role_id;
+                    let roleId;
                     for (let a = 0; a < res.length; a++) {
                         if (res[a].title == answer.role) {
-                            role_id = res[a].id;
+                            roleId = res[a].id;
                             console.log(role_id)
                         }                  
                     }  
                     db.query(
                     'INSERT INTO employee SET ?',
                     {
-                        first_name: answer.first_name,
-                        last_name: answer.last_name,
-                        manager_id: answer.manager_id,
-                        role_id: role_id,
+                        firstName: answer.firstName,
+                        lastName: answer.lastName,
+                        managerId: answer.managerId,
+                        roleId: roleId,
                     },
                     function (err) {
                         if (err) throw err;
@@ -203,7 +203,7 @@ function addDepartment() {
     inquirer
     .prompt([
         {
-            name: 'newDepartment', 
+            name: 'department', 
             type: 'input', 
             message: 'Which department would you like to add?'
         }
@@ -211,7 +211,7 @@ function addDepartment() {
             db.query(
                 'INSERT INTO department SET ?',
                 {
-                    name: answer.newDepartment
+                    name: answer.department
                 },
             function (err) {
             console.log('Your department has been added');
