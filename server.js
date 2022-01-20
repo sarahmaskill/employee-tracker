@@ -18,7 +18,7 @@ const db = mysql.createConnection(
 // Start the application 
 db.connect((err) => {
     if (err) throw err;
-    console.log("Welcome to the Employee Tracker");
+    console.log("🆆🅴🅻🅲🅾🅼🅴 🆃🅾 🆃🅷🅴 🅴🅼🅿🅻🅾🆈🅴🅴 🆃🆁🅰🅲🅺🅴🆁");
     startApp()
 });
 //main menu
@@ -198,8 +198,8 @@ function addEmployee() {
         })
 };
 function addDepartment() {
-    db.query('SELECT * FROM department', function (err, res) {
-        if (err) throw err;
+    // db.query('SELECT * FROM department', function (err, res) {
+    //     if (err) throw err;
     inquirer
     .prompt([
         {
@@ -220,5 +220,6 @@ function addDepartment() {
             console.table('All Departments:', res);
             startApp();
             })
+        
         })
     };
