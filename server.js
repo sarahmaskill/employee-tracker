@@ -198,6 +198,8 @@ function addEmployee() {
         })
 };
 function addDepartment() {
+    db.query('SELECT * FROM department', function (err, res) {
+        if (err) throw err;
     inquirer
     .prompt([
         {
