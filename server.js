@@ -106,7 +106,7 @@ function addRole() {
                 message: 'What is the salary of this role? Please enter an interger with no decimals'
             },
             {
-                name: 'Department',
+                name: 'department',
                 type: 'list',
                 choices: function() {
                     var deptArry = [];
@@ -119,7 +119,7 @@ function addRole() {
         ]).then(function (answer) {
             let departmentId;
             for (let a = 0; a < res.length; a++) {
-                if (res[a].name == answer.Department) {
+                if (res[a].name == answer.department) {
                     departmentId = res[a].id;
                 }
             }
@@ -207,13 +207,14 @@ function addDepartment() {
             type: 'input', 
             message: 'Which department would you like to add?'
         }
-        ]).then(function (answer) {
+        ]).then
             db.query(
                 'INSERT INTO department SET ?',
                 {
                     name: answer.department
                 },
             function (err) {
+                if (err) throw err;
             console.log('Your department has been added');
             console.table('All Departments:', res);
             startApp();
