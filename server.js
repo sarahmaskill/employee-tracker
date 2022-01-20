@@ -96,7 +96,7 @@ function addRole() {
         inquirer 
         .prompt([
             {
-                name: 'new_role',
+                name: 'newRole',
                 type: 'input', 
                 message: "What new role would you like to add?"
             },
@@ -147,17 +147,17 @@ function addEmployee() {
         inquirer
             .prompt([
                 {
-                    name: 'first_name',
+                    name: 'firstName',
                     type: 'input', 
                     message: "What is the employee's first name? ",
                 },
                 {
-                    name: 'last_name',
+                    name: 'lastName',
                     type: 'input', 
                     message: "What is the employee's last name? "
                 },
                 {
-                    name: 'manager_id',
+                    name: 'managerId',
                     type: 'input', 
                     message: "What is the employee's manager's ID? "
                 },
