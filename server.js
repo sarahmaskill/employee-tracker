@@ -18,7 +18,7 @@ const db = mysql.createConnection(
 // Start the application 
 db.connect((err) => {
     if (err) throw err;
-    console.log("🆆🅴🅻🅲🅾🅼🅴 🆃🅾 🆃🅷🅴 🅴🅼🅿🅻🅾🆈🅴🅴 🆃🆁🅰🅲🅺🅴🆁");
+    console.log("🆆 🅴 🅻 🅲 🅾 🅼 🅴   🆃 🅾   🆃 🅷 🅴   🅴 🅼 🅿 🅻 🅾 🆈 🅴 🅴   🆃 🆁 🅰 🅲 🅺 🅴 🆁");
     startApp()
 });
 //main menu
@@ -75,7 +75,7 @@ function viewAllEmployees() {
     let query = 'SELECT * FROM employee';
     db.query(query, function (err, res) {
         if (err) throw err;
-        console.log(res.length + ' employees found!');
+        console.log(res.length + ' employees found');
         console.table('All Employees:', res);
         startApp();
     })
@@ -103,7 +103,7 @@ function addRole() {
             {
                 name: 'salary',
                 type: 'input',
-                message: 'What is the salary of this role? (Enter a number)'
+                message: 'What is the salary of this role? Please enter an interger with no decimals'
             },
             {
                 name: 'Department',
@@ -133,7 +133,7 @@ function addRole() {
                 },
                 function (err, res) {
                     if(err)throw err;
-                    console.log('Your new role has been added!');
+                    console.log('Your new role has been added');
                     console.table('All Roles:', res);
                     startApp();
                 })
@@ -191,15 +191,15 @@ function addEmployee() {
                     },
                     function (err) {
                         if (err) throw err;
-                        console.log('Your employee has been added!');
+                        console.log('Your employee has been added');
                         startApp();
                     })
                 })
         })
 };
 function addDepartment() {
-    // db.query('SELECT * FROM department', function (err, res) {
-    //     if (err) throw err;
+    db.query('SELECT * FROM department', function (err, res) {
+        if (err) throw err;
     inquirer
     .prompt([
         {
@@ -212,11 +212,9 @@ function addDepartment() {
                 'INSERT INTO department SET ?',
                 {
                     name: answer.newDepartment
-                });
-            var query = 'SELECT * FROM department';
-            db.query(query, function(err, res) {
-            if(err)throw err;
-            console.log('Your department has been added!');
+                },
+            function (err) {
+            console.log('Your department has been added');
             console.table('All Departments:', res);
             startApp();
             })
